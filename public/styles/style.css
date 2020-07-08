@@ -6,16 +6,18 @@
     font-size: 34px;
 }
 
-.navbar-nav > li{
+.navbar-nav{
     margin-left:10px;
     margin-right:10px;
 }
 
-.table-heading {
-    padding: 10px;
-}
-
-.table {
-    border-collapse: separate;
-    border-spacing:0 20px;
-}
+@media screen and (max-width: 1000px) {
+    .navbar-brand {
+        font-size: 60px;
+    }
+    #save {
+        margin-left: 80px;
+        max-width: 55px;
+        max-height: 45px;
+    }
+  }

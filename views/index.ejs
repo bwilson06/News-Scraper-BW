@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarColor01">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span><span><svg width="1em"
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span><span><svg width="1em"
                             height="1em" viewBox="0 0 16 16" class="bi bi-newspaper" fill="currentColor"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -30,20 +30,20 @@
 </nav>
 <br>
 <% if (typeof dbArticle != undefined) { %>
+    <div class="container">
     <h3 class="table-heading">
         Recent Articles
-        <small class="text-muted"> sorted by date</small>
+        <small class="text-muted">about our world</small>
     </h3>
-
-    <table class="table table-hover">
-        <tbody>
     <% dbArticle.forEach(function(element, i){ %>
-        <tr style="margin-bottom: 20px;"class="table-success">
-            <th style="vertical-align:middle;"scope="row"><%= i + 1 %></th>
-            <td style="vertical-align:middle; text-align: center;"><a href="<%- element.link %>" target="_blank" style="color: white;"><%= element.title %></a></td>
-            <td style="float:right;"><button type="button" class="btn btn-primary">Save Article</button></td>
-        </tr>
+        <ul style="margin-bottom: 10px;" class="list-group">
+            <a href="<%- element.link %>" target="_blank">
+            <li class="list-group-item d-flex justify-content-between">
+                <%= element.title %>
+            </a>
+            <a href="/saved/<%- element.id %>"><button type="button" id="save" class="btn btn-sm btn-primary">Save Article</button>
+            </li>
+          </ul>
         <% }) %>   
-    </tbody>
-</table>
+</div>
 <% } %>

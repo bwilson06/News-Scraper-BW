@@ -17,6 +17,32 @@ router.get("/", function(req, res){
     });
 })
 
+router.get("/saved/:id", function(req, res){
+    var id = req.params.id
+    console.log(id)
+
+    db.Article.updateOne({ _id: id}, { saved: true }).then(function(dbArticle) {
+        console.log(dbArticle)
+      // If we were able to successfully find Articles, send them back to the client
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    }).then(function(){
+
+    db.Article.find({ saved: false})
+    .then(function(dbArticle) {
+        console.log(dbArticle)
+      // If we were able to successfully find Articles, send them back to the client
+      res.render("index", { dbArticle })
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+})
+})
+
 router.get("/scrape", function (req, res) {
   axios.get("https://www.nytimes.com/section/world").then(function (response) {
     var $ = cheerio.load(response.data);
