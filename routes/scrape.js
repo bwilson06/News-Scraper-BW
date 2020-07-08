@@ -82,6 +82,17 @@ router.get("/saved", function(req, res){
         });
 })
 
+router.post("/comment", function(req, res) {
+    console.log(req.body)
+
+    db.Comment.create({ body: req.body.comment }).then(function(dbComment){
+        return db.Article.findOneAndUpdate({ _id: req.body._id }, { note: dbComment._id}, {new: true});
+        console.log(dbComment)
+    }).catch(function(err){
+        console.log(err)
+    })
+})
+
 router.get("/scrape", function (req, res) {
   axios.get("https://www.nytimes.com/section/world").then(function (response) {
     var $ = cheerio.load(response.data);
