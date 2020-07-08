@@ -6,7 +6,13 @@ function modal(element) {
    var id = $(element).data('id')
    $(this).attr('article_id', id)
    console.log($(this).attr('article_id'))
-    $('.modal').modal()
+   $.get(`/comment/${id}`).then(function(data){
+    if(data){
+        $('.modal').modal()
+        $("#comment_val").val(data)
+    }
+    console.log(data)
+   })
 }
 
 function myFunction(element){
@@ -22,4 +28,5 @@ function myFunction(element){
         console.log(data);
       });
     $("#comment_val").val("")
+    location.reload();
 }

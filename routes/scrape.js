@@ -93,6 +93,22 @@ router.post("/comment", function(req, res) {
     })
 })
 
+router.get("/comment/:id", function(req, res){
+    console.log(req.params.id)
+    db.Article.findOne({ _id: req.params.id })
+    // ..and populate all of the notes associated with it
+    .populate("note")
+    .then(function(dbArticle) {
+      // If we were able to successfully find an Article with the given id, send it back to the client
+      console.log('this is it', dbArticle.note.body);
+      res.json(dbArticle.note.body)
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+})
+
 router.get("/scrape", function (req, res) {
   axios.get("https://www.nytimes.com/section/world").then(function (response) {
     var $ = cheerio.load(response.data);
