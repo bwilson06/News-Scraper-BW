@@ -20,7 +20,7 @@
                         </svg></span></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/scrape">Saved Articles<span></span></a>
+                <a class="nav-link" href="/saved">Saved Articles<span></span></a>
             </li>
         </ul>
         <span class="navbar-text text-success">
@@ -41,7 +41,11 @@
             <li class="list-group-item d-flex justify-content-between">
                 <%= element.title %>
             </a>
-            <a href="/saved/<%- element.id %>"><button type="button" id="save" class="btn btn-sm btn-primary">Save Article</button>
+            <% if (element.saved != true) { %>
+            <a href="/saved/<%- element.id %>"><button type="button" id="save" class="btn btn-sm btn-primary">Save Article</button></a>
+            <% } else { %>
+                <a href="/unsave/<%- element.id %>"><button type="button" id="save" class="btn btn-sm btn-primary">Unsave</button></a>
+                <% } %>
             </li>
           </ul>
         <% }) %>   
