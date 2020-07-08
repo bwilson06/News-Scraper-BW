@@ -1,0 +1,21 @@
+.nav-link {
+    font-size: 24px;
+}
+
+.navbar-brand {
+    font-size: 34px;
+}
+
+.navbar-nav > li{
+    margin-left:10px;
+    margin-right:10px;
+}
+
+.table-heading {
+    padding: 10px;
+}
+
+.table {
+    border-collapse: separate;
+    border-spacing:0 20px;
+}
