@@ -7,9 +7,9 @@ function modal(element) {
    $(this).attr('article_id', id)
    console.log($(this).attr('article_id'))
    $.get(`/comment/${id}`).then(function(data){
+    $('.modal').modal()
     if(data){
         console.log(typeof data)
-        $('.modal').modal()
         if(typeof data == "object"){
             $("#comment_val").val("")
         } else {
