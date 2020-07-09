@@ -8,8 +8,13 @@ function modal(element) {
    console.log($(this).attr('article_id'))
    $.get(`/comment/${id}`).then(function(data){
     if(data){
+        console.log(typeof data)
         $('.modal').modal()
-        $("#comment_val").val(data)
+        if(typeof data == "object"){
+            $("#comment_val").val("")
+        } else {
+            $("#comment_val").val(data)
+        }
     }
     console.log(data)
    })
