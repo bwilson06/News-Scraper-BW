@@ -18,8 +18,11 @@ app.use(express.static("public"));
 app.use(expressLayouts);
 app.set("view engine", "ejs");
 
+// If deployed, use our mLab database. Otherwise use local database.
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/NewsScraperBW";
+
 // Connect to our database
-mongoose.connect("mongodb://localhost/NewsScraperBW", { useNewUrlParser: true });
+mongoose.connect(MONGODB_URI);
 
 // Routes
 app.use("/", require("./routes/scrape"));
